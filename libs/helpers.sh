@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 if ! declare -p FG_COLOURS > /dev/null 2>&1; then
   declare -A FG_COLOURS=(
     [black]=30
@@ -57,7 +59,6 @@ function may_color() {
           *)
               return 1 ;;
     esac;
-    return 1
   fi
 }
 
@@ -189,11 +190,11 @@ function bg_bright_white() {
 
 
 function echoc() {
-	local color="$(echo "$1"|tr '[:upper:]' '[:lower:]')"
-	local title="$2"
-	shift 2
-	local message="$@"
-	local formatted_title="$title"
+        local color="${1,,}"
+        local title="$2"
+        shift 2
+        local message="$*"
+        local formatted_title="$title"
 
 	may_color && [ -n "$color" ] && declare -F "$color" >/dev/null && formatted_title="$($color "$title")"
 
@@ -329,8 +330,8 @@ function confirm() {
 }
 
 function split_title() {
-	local max_length="80"
-	local text="$@"
+        local max_length="80"
+        local text="$*"
 
 	while [[ ${#text} -gt $max_length ]]; do
 		# Corta el texto en la longitud máxima permitida
@@ -343,11 +344,11 @@ function split_title() {
 }
 
 function printtitle() {
-	local title="$@"
-	info "********************************************"
-	info "*** $title ***"
-	info "********************************************"
-	
+        local title="$*"
+        info "********************************************"
+        info "*** $title ***"
+        info "********************************************"
+        
 }
 
 # Ensure given commands exist in PATH; print friendly errors and return non-zero if any missing
