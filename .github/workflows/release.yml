@@ -1,0 +1,54 @@
+name: Releasing
+on:
+  push:
+    tags:
+        - 'v*.*.*'
+  
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest    
+    steps:
+      - name: Checkout (full history)
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate release notes (latest)
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes conventional-changelog-cli -p conventionalcommits -r 1 > RELEASE_NOTES.md
+          echo "Generated release notes:" && head -n 40 RELEASE_NOTES.md || true
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: RELEASE_NOTES.md
+
+      - name: Update CHANGELOG.md on main
+        if: always()
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Ensure local has main
+          git fetch origin main
+          git checkout -B main origin/main
+          # Re-generate full CHANGELOG.md
+          npx --yes conventional-changelog-cli -p conventionalcommits -i CHANGELOG.md -s -r 0
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git add CHANGELOG.md
+            git commit -m "docs(changelog): update CHANGELOG for ${{ github.ref_name }}"
+            git push origin HEAD:main
+          else
+            echo "No changes to CHANGELOG.md"
+          fi
