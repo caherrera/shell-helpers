@@ -40,7 +40,7 @@ if ! declare -p BG_COLOURS > /dev/null 2>&1; then
   )
 fi
 
-if [[ -z "${NC:-}" ]]; then
+if ! declare -p NC > /dev/null 2>&1; then
   declare -r NC=$'\033[0m' # No Color
 fi
 
