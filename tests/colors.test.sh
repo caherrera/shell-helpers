@@ -1,11 +1,16 @@
-source ../libs/helpers.sh
+#!/usr/bin/env bash
+# shellcheck source-path=SCRIPTDIR
+SCRIPT_DIR="$(CDPATH='' cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=../libs/helpers.sh
+source "${SCRIPT_DIR}/../libs/helpers.sh"
 
 function test_color_function() {
     local func_name="$1"
     local expected_start_code="$2"
     local expected_end_code="$3"
     local test_string="TEST"
-    local result=$("$func_name" "$test_string") 
+    local result
+    result=$("$func_name" "$test_string") 
     if [[ "$result" == "${expected_start_code}${test_string}${expected_end_code}" ]]; then
         echo "✅ Test passed for $func_name"
     else
@@ -44,7 +49,8 @@ function test_echoc_function() {
 
     # Reset may_color for other tests
     unset -f may_color
-    source ../libs/helpers.sh # Reload to get original may_color
+    # shellcheck source=../libs/helpers.sh
+    source "${SCRIPT_DIR}/../libs/helpers.sh" # Reload to get original may_color
 }
 
 
