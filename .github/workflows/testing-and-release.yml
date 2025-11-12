@@ -46,6 +46,8 @@ jobs:
   semver:
     name: Auto Tag (main)
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     needs: [bash-n, shellcheck, unit-tests]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' && github.actor != 'github-actions[bot]'
     steps:
@@ -55,7 +57,7 @@ jobs:
           fetch-depth: 0
 
       - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.70.0
+        uses: anothrNick/github-tag-action@1.70.0        
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
