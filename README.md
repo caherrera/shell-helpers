@@ -2,7 +2,7 @@
 
 [![Language](https://img.shields.io/badge/language-Shell%20Script-blue.svg)](https://en.wikipedia.org/wiki/Shell_script)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Made with Bash](https://img.shields.io/badge/Made%20with-Bash-4EAA25.svg)](https://www.gnu.org/software/bash/)
+[![bash](https://img.shields.io/badge/bash-5.3-blue)](#) [![zsh](https://img.shields.io/badge/zsh-5.9-blue)](#)
 
 A collection of useful helper functions for shell scripting, designed to make your scripts more robust, colorful, and user-friendly.
 
@@ -13,6 +13,15 @@ A collection of useful helper functions for shell scripting, designed to make yo
 - **Confirmation Prompt**: A `confirm` function to safely ask for user confirmation in interactive scripts.
 - **Dependency Checking**: `ensure_commands` function to verify that required CLI tools are installed.
 - **Utility Functions**: Various helpers for terminal interactions, titles, and environment setup.
+
+## Prerequisites
+
+These scripts have been tested with the following shell versions:
+
+-   **Zsh**: `5.9` or higher
+-   **GNU Bash**: `5.3.3` or higher
+
+**Important:** The default `bash` version included with macOS (typically `3.2.57`) is **not** supported and may cause unexpected issues. It is highly recommended to use a modern version of Zsh or install a newer version of Bash (e.g., via Homebrew).
 
 ## Installation & Usage
 
