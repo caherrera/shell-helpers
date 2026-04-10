@@ -319,6 +319,31 @@ function get_days_ahead_iso8601() {
 # 🎨 UI FRAMEWORK (Estilo Bootstrap)
 # ==========================================
 
+# Variables de color de solo lectura para uso libre
+RC="\033[0m"  # Reset color
+
+# Foreground colors
+FG_RED="\033[38;5;196m"
+FG_BLACK="\033[38;5;16m"
+FG_GREEN="\033[38;5;34m"
+FG_YELLOW="\033[38;5;220m"
+FG_BLUE="\033[38;5;33m"
+FG_MAGENTA="\033[38;5;135m"
+FG_CYAN="\033[38;5;51m"
+FG_WHITE="\033[38;5;231m"
+FG_GRAY="\033[38;5;245m"
+
+# Background colors
+BG_BLACK="\033[48;5;16m"
+BG_RED="\033[48;5;196m"
+BG_GREEN="\033[48;5;34m"
+BG_YELLOW="\033[48;5;220m"
+BG_BLUE="\033[48;5;33m"
+BG_MAGENTA="\033[48;5;135m"
+BG_CYAN="\033[48;5;51m"
+BG_WHITE="\033[48;5;231m"
+BG_GRAY="\033[48;5;245m"
+
 # 1. MODIFICADORES EN LÍNEA
 # Estilos Tipográficos (Componibles).
 fw_bold()      { printf "\033[1m%s\033[22m" "$1"; }
@@ -329,15 +354,15 @@ fw_reverse()   { printf "\033[7m%s\033[27m" "$1"; }
 fw_strike()    { printf "\033[9m%s\033[29m" "$1"; }
 
 # Colores de Texto (Foreground) usando paleta 256 colores para diseño más atractivo
-text_primary()   { printf "\033[38;5;39m%s\033[39m" "$1"; }     # Azul
-text_secondary() { printf "\033[38;5;244m%s\033[39m" "$1"; }    # Gris
-text_success()   { printf "\033[38;5;40m%s\033[39m" "$1"; }     # Verde
-text_danger()    { printf "\033[38;5;196m%s\033[39m" "$1"; }    # Rojo
-text_warning()   { printf "\033[38;5;214m%s\033[39m" "$1"; }    # Amarillo/Naranja
-text_info()      { printf "\033[38;5;45m%s\033[39m" "$1"; }     # Cyan
-text_light()     { printf "\033[38;5;253m%s\033[39m" "$1"; }    # Blanco apagado
+text_primary()   { printf "${FG_BLUE}%s${RC}" "$1"; }     # Azul
+text_secondary() { printf "${FG_GRAY}%s${RC}" "$1"; }    # Gris
+text_success()   { printf "${FG_GREEN}%s${RC}" "$1"; }     # Verde
+text_danger()    { printf "${FG_RED}%s${RC}" "$1"; }    # Rojo
+text_warning()   { printf "${FG_YELLOW}%s${RC}" "$1"; }    # Amarillo/Naranja
+text_info()      { printf "${FG_CYAN}%s${RC}" "$1"; }     # Cyan
+text_light()     { printf "${FG_WHITE}%s${RC}" "$1"; }    # Blanco apagado
 text_dark()      { printf "\033[38;5;236m%s\033[39m" "$1"; }    # Gris muy oscuro
-text_muted()     { printf "\033[38;5;240m%s\033[39m" "$1"; }    # Texto tenue (DEPRECATED in Bootstrap 5.3)
+text_muted()     { printf "\033[38;5;246m%s\033[39m" "$1"; }    # Texto tenue (DEPRECATED in Bootstrap 5.3)
 
 # Bootstrap 5.3 Body colors
 text_body()           { printf "\033[38;5;250m%s\033[39m" "$1"; }  # Body text default
@@ -346,8 +371,8 @@ text_body_secondary() { printf "\033[38;5;245m%s\033[39m" "$1"; }  # Body text s
 text_body_tertiary()  { printf "\033[38;5;243m%s\033[39m" "$1"; }  # Body text tertiary
 
 # Bootstrap 5.3 Basic colors
-text_black() { printf "\033[38;5;16m%s\033[39m" "$1"; }   # Negro puro
-text_white() { printf "\033[38;5;231m%s\033[39m" "$1"; }  # Blanco puro
+text_black() { printf "${FG_BLACK}%s${RC}" "$1"; }   # Negro puro
+text_white() { printf "${FG_WHITE}%s${RC}" "$1"; }  # Blanco puro
 
 # Bootstrap 5.3 Emphasis colors (lighter variants)
 text_primary_emphasis()   { printf "\033[38;5;111m%s\033[39m" "$1"; }  # Azul claro
@@ -435,63 +460,64 @@ bg_danger_subtle()    { printf "\033[48;5;224m%s\033[49m" "$1"; }   # Danger bac
 bg_light_subtle()     { printf "\033[48;5;255m%s\033[49m" "$1"; }   # Light background subtle
 bg_dark_subtle()      { printf "\033[48;5;245m%s\033[49m" "$1"; }   # Dark background subtle
 
-border_primary_subtle()   { printf "\033[38;5;117m%s\033[39m" "$1"; }   # Primary border subtle
-border_secondary_subtle() { printf "\033[38;5;246m%s\033[39m" "$1"; }   # Secondary border subtle
-border_success_subtle()   { printf "\033[38;5;158m%s\033[39m" "$1"; }   # Success border subtle
-border_info_subtle()      { printf "\033[38;5;117m%s\033[39m" "$1"; }   # Info border subtle
-border_warning_subtle()   { printf "\033[38;5;229m%s\033[39m" "$1"; }   # Warning border subtle
-border_danger_subtle()    { printf "\033[38;5;203m%s\033[39m" "$1"; }   # Danger border subtle
-border_light_subtle()     { printf "\033[38;5;250m%s\033[39m" "$1"; }   # Light border subtle
-border_dark_subtle()      { printf "\033[38;5;245m%s\033[39m" "$1"; }   # Dark border subtle
+border_primary_subtle()   { printf "\033[38;5;117m%s${RC}" "$1"; }   # Primary border subtle
+border_secondary_subtle() { printf "\033[38;5;246m%s${RC}" "$1"; }   # Secondary border subtle
+border_success_subtle()   { printf "\033[38;5;158m%s${RC}" "$1"; }   # Success border subtle
+border_info_subtle()      { printf "\033[38;5;117m%s${RC}" "$1"; }   # Info border subtle
+border_warning_subtle()   { printf "\033[38;5;229m%s${RC}" "$1"; }   # Warning border subtle
+border_danger_subtle()    { printf "\033[38;5;203m%s${RC}" "$1"; }   # Danger border subtle
+border_light_subtle()     { printf "\033[38;5;250m%s${RC}" "$1"; }   # Light border subtle
+border_dark_subtle()      { printf "\033[38;5;245m%s${RC}" "$1"; }   # Dark border subtle
 
 # Paleta completa extendida (Estilo Bootstrap: blue, indigo, purple, pink, red, orange, yellow, green, teal, cyan, white, gray)
-text_blue()      { printf "\033[38;5;33m%s\033[39m" "$1"; }
+text_blue()      { printf "${FG_BLUE}%s${RC}" "$1"; }
 text_indigo()    { printf "\033[38;5;99m%s\033[39m" "$1"; }
-text_purple()    { printf "\033[38;5;135m%s\033[39m" "$1"; }
+text_purple()    { printf "${FG_MAGENTA}%s${RC}" "$1"; }
 text_pink()      { printf "\033[38;5;162m%s\033[39m" "$1"; }
-text_red()       { printf "\033[38;5;196m%s\033[39m" "$1"; }
+text_red()       { printf "${FG_RED}%s${RC}" "$1"; }
 text_orange()    { printf "\033[38;5;208m%s\033[39m" "$1"; }
-text_yellow()    { printf "\033[38;5;220m%s\033[39m" "$1"; }
-text_green()     { printf "\033[38;5;34m%s\033[39m" "$1"; }
+text_yellow()    { printf "${FG_YELLOW}%s${RC}" "$1"; }
+text_green()     { printf "${FG_GREEN}%s${RC}" "$1"; }
 text_teal()      { printf "\033[38;5;43m%s\033[39m" "$1"; }
-text_cyan()      { printf "\033[38;5;51m%s\033[39m" "$1"; }
-text_white()     { printf "\033[38;5;231m%s\033[39m" "$1"; }
-text_gray()      { printf "\033[38;5;245m%s\033[39m" "$1"; }    # Texto tenue
+text_cyan()      { printf "${FG_CYAN}%s${RC}" "$1"; }
+text_white()     { printf "${FG_WHITE}%s${RC}" "$1"; }
+text_gray()      { printf "${FG_GRAY}%s${RC}" "$1"; }    # Texto tenue
 
 # Colores de Fondo (Background)
-bg_primary()   { printf "\033[48;5;39m%s\033[49m" "$1"; }
-bg_secondary() { printf "\033[48;5;244m%s\033[49m" "$1"; }
-bg_success()   { printf "\033[48;5;40m%s\033[49m" "$1"; }
-bg_danger()    { printf "\033[48;5;196m%s\033[49m" "$1"; }
-bg_warning()   { printf "\033[48;5;214m%s\033[49m" "$1"; }
-bg_info()      { printf "\033[48;5;45m%s\033[49m" "$1"; }
+bg_primary()   { printf "${BG_BLUE}%s${RC}" "$1"; }
+bg_secondary() { printf "${BG_GRAY}%s${RC}" "$1"; }
+bg_success()   { printf "${BG_GREEN}%s${RC}" "$1"; }
+bg_danger()    { printf "${BG_RED}%s${RC}" "$1"; }
+bg_warning()   { printf "${BG_YELLOW}%s${RC}" "$1"; }
+bg_info()      { printf "${BG_CYAN}%s${RC}" "$1"; }
 bg_light()     { printf "\033[48;5;253m%s\033[49m" "$1"; }
 bg_dark()      { printf "\033[48;5;236m%s\033[49m" "$1"; }
 
 # Fondos de la paleta extendida
-bg_blue()      { printf "\033[48;5;33m%s\033[49m" "$1"; }
+bg_black()     { printf "${BG_BLACK}%s${RC}" "$1"; }
+bg_blue()      { printf "${BG_BLUE}%s${RC}" "$1"; }
 bg_indigo()    { printf "\033[48;5;99m%s\033[49m" "$1"; }
-bg_purple()    { printf "\033[48;5;135m%s\033[49m" "$1"; }
+bg_purple()    { printf "${BG_MAGENTA}%s${RC}" "$1"; }
 bg_pink()      { printf "\033[48;5;162m%s\033[49m" "$1"; }
-bg_red()       { printf "\033[48;5;196m%s\033[49m" "$1"; }
+bg_red()       { printf "${BG_RED}%s${RC}" "$1"; }
 bg_orange()    { printf "\033[48;5;208m%s\033[49m" "$1"; }
-bg_yellow()    { printf "\033[48;5;220m%s\033[49m" "$1"; }
-bg_green()     { printf "\033[48;5;34m%s\033[49m" "$1"; }
+bg_yellow()    { printf "${BG_YELLOW}%s${RC}" "$1"; }
+bg_green()     { printf "${BG_GREEN}%s${RC}" "$1"; }
 bg_teal()      { printf "\033[48;5;43m%s\033[49m" "$1"; }
-bg_cyan()      { printf "\033[48;5;51m%s\033[49m" "$1"; }
-bg_white()     { printf "\033[48;5;231m%s\033[49m" "$1"; }
-bg_gray()      { printf "\033[48;5;245m%s\033[49m" "$1"; }
+bg_cyan()      { printf "${BG_CYAN}%s${RC}" "$1"; }
+bg_white()     { printf "${BG_WHITE}%s${RC}" "$1"; }
+bg_gray()      { printf "${BG_GRAY}%s${RC}" "$1"; }
 
 # 2. TIPOGRAFÍA DE BLOQUE
 
 title() {
   printf "\033[0m\n"
-  printf "  %s\n" "$(fw_underline "$(fw_bold "$(text_primary "$1")")")"
+  printf "  %s\n" "$(fw_underline "$(fw_bold "$(text_warning "$1")")")"
   printf "\033[0m\n"
 }
 
 subtitle() {
-  printf "  %s\n\n\033[0m" "$(fw_italic "$(text_muted "$1")")"
+  printf "  %s\n\n\033[0m" "$(fw_italic "$(text_yellow "$1")")"
 }
 
 paragraph() {
@@ -647,4 +673,83 @@ progress_bar() {
     if [[ $current -eq $total ]]; then
         printf "\n"
     fi
+}
+
+# Función para generar líneas de argumentos para tablas de uso
+# Usage: parse_arg "key" "value" "default" "description"
+parse_arg() {
+    local key="$1"
+    local value="$2"
+
+	if [ $# -gt 3 ]; then
+		local default="$3"
+		shift 3
+	else
+		local default=""
+		shift 2
+	fi
+
+    local description="$*"
+	local text_default=""
+	if [ -n "$default" ]; then
+		text_default="(default: $default)"
+	fi
+    printf "%s;%s;%s;%s\n" "$key" "$value" "$text_default" "$description"
+}
+
+max_length() {
+    local max
+	max=0    
+    for num in "$@"; do
+        if [[ $num -gt $max ]]; then
+            max=$num
+        fi
+    done
+    echo $((max+2))
+}
+
+
+# Función para formatear salida de parse_arg() en una tabla bonita
+# Usage: { parse_arg "key1" "value" "desc1"; parse_arg "key2" "value" "desc2"; } | toUsage
+toUsage() {	
+	declare -a key_array value_array default_array description_array lines
+  while IFS= read -r line; do
+	lines+=("$line")
+    key_array+=($(echo "$line" | cut -d';' -f1 | wc -c))
+    value_array+=($(echo "$line" | cut -d';' -f2 | wc -c))
+    default_array+=($(echo "$line" | cut -d';' -f3 | wc -c))
+    description_array+=($(echo "$line" | cut -d';' -f4 | wc -c))
+    
+  done
+
+  # Obten los maximos
+  local max_key=$(max_length "${key_array[@]}")
+  local max_value=$(max_length "${value_array[@]}")
+  local max_default=$(max_length "${default_array[@]}")
+  local max_description=$(max_length "${description_array[@]}")
+  
+  # Imprime la tabla
+
+  for line in "${lines[@]}"; do
+	local key="$(echo "$line" | cut -d';' -f1)"
+	local value="$(echo "$line" | cut -d';' -f2)"
+	local default="$(echo "$line" | cut -d';' -f3)"
+	local description="$(echo "$line" | cut -d';' -f4)"
+	
+	# Primera línea: key, value, default
+	printf "%*s" "$1" ""
+    printf "${FG_GREEN}%-${max_key}s${RC}" "$key"
+    printf "  ${FG_YELLOW}%-${max_value}s${RC}" "$value"    
+    if [ -n "$default" ]; then
+		printf "  ${FG_CYAN}%s${RC}" "$default"
+	fi
+	echo
+	
+	# Segunda línea: descripción con indentación extra si existe
+	if [ -n "$description" ]; then
+		printf "%*s" "$(( $1 + max_key + 4 ))" ""
+		printf "${FG_WHITE}%s${RC}\n" "$description"
+	fi
+  done
+  
 }

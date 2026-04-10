@@ -2,22 +2,71 @@ name: Releasing
 on:
   push:
     tags:
-        - 'v*.*.*'
-  
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag name to release (e.g., v1.2.3)'
+        required: true
+        type: string
+      target:
+        description: 'Target branch or commitish for the tag'
+        required: false
+        default: 'main'
+        type: string
+
 jobs:
   release:
     name: Release
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
+    env:
+      TAG_NAME: ${{ github.ref_type == 'tag' && github.ref_name || inputs.tag }}
+      TARGET_COMMITISH: ${{ inputs.target }}
     steps:
       - name: Checkout (full history)
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
+          ref: ${{ inputs.target || github.ref }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate release notes (latest)
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes conventional-changelog-cli -p conventionalcommits -r 1 > RELEASE_NOTES.md
+          echo "Generated release notes:" && head -n 40 RELEASE_NOTES.md || true
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ env.TAG_NAME }}
+          target_commitish: ${{ env.TARGET_COMMITISH || 'main' }}
           body_path: RELEASE_NOTES.md
+
+      - name: Regenerate full CHANGELOG.md
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes conventional-changelog-cli -p conventionalcommits -i CHANGELOG.md -s -r 0
+
+      - name: Create PR to update CHANGELOG.md
+        if: always()
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "docs(changelog): update CHANGELOG for ${{ env.TAG_NAME }}"
+          title: "docs(changelog): update CHANGELOG for ${{ env.TAG_NAME }}"
+          body: "Automated CHANGELOG update for tag ${{ env.TAG_NAME }}."
+          branch: "chore/update-changelog-${{ env.TAG_NAME }}"
+          base: "main"
+          delete-branch: true
