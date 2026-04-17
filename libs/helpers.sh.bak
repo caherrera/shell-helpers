@@ -523,7 +523,7 @@ bg_gray()      { printf "${BG_GRAY}%s${RC}" "$1"; }
 
 title() {
   printf "\033[0m\n"
-  printf "  %s\n" "$(fw_underline "$(fw_bold "$(text_warning "$1")")")"
+  printf "  %s\n" "$(fw_underline "$(fw_bold "$(text_warning "$1"))")"
   printf "\033[0m\n"
 }
 
