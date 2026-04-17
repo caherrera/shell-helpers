@@ -47,9 +47,9 @@ echo "Passed: $PASSED_TESTS"
 echo "Failed: $FAILED_TESTS"
 
 if [[ $FAILED_TESTS -eq 0 ]]; then
-    echo "🎉 All tests passed!"
+    echo "?? All tests passed!"
     exit 0
 else
-    echo "❌ Some tests failed. Please check the individual test outputs."
+    echo "?? Some tests failed. Please check the individual test outputs."
     exit 1
 fi
