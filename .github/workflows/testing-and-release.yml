@@ -57,18 +57,9 @@ jobs:
         run: |
           set -euo pipefail
           echo "Running ${{ matrix.test-file }}"
-          cd tests
+          cd tests          
           
-          # Capture test output and analyze result
-          if bash -ex "${{ matrix.test-file }}" 2>&1 | tee test_output.log; then
-            echo "PASSED: ${{ matrix.test-file }}"
-            exit 0
-          else
-            echo "FAILED: ${{ matrix.test-file }}"
-            echo "Output:"
-            cat test_output.log
-            exit 1
-          fi
+          bash -ex "${{ matrix.test-file }}"
 
 
   semver:
