@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC1091
 
+# Set TERM for CI environments if not available
+export TERM="${TERM:-xterm-256color}"
+
 # Include our UI library
 source "$(dirname "$0")/../libs/helpers.sh"
 
