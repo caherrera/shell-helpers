@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1091
 
 # Test for the improved may_color() function
 source "$(dirname "$0")/../libs/helpers.sh"
@@ -23,36 +24,36 @@ echo "2. Simulating modern terminals:"
 TERM_PROGRAM="iTerm.app" TERM="xterm-256color"
 echo -n "   iTerm.app: "
 if may_color; then
-    echo "$(text_success "YES")"
+    text_success "YES"
 else
-    echo "$(text_danger "NO")"
+    text_danger "NO"
 fi
 
 # Warp
 TERM_PROGRAM="warp" TERM="xterm-256color"
 echo -n "   Warp: "
 if may_color; then
-    echo "$(text_success "YES")"
+    text_success "YES"
 else
-    echo "$(text_danger "NO")"
+    text_danger "NO"
 fi
 
 # WezTerm
 TERM_PROGRAM="wezterm" TERM="xterm-256color"
 echo -n "   WezTerm: "
 if may_color; then
-    echo "$(text_success "YES")"
+    text_success "YES"
 else
-    echo "$(text_danger "NO")"
+    text_danger "NO"
 fi
 
 # VS Code
 TERM_PROGRAM="vscode" TERM="xterm-256color"
 echo -n "   VS Code: "
 if may_color; then
-    echo "$(text_success "YES")"
+    text_success "YES"
 else
-    echo "$(text_danger "NO")"
+    text_danger "NO"
 fi
 
 echo
@@ -63,9 +64,9 @@ unset TERM_PROGRAM TERM
 export GITHUB_ACTIONS=true
 echo -n "   GitHub Actions: "
 if may_color; then
-    echo "$(text_success "YES (if TTY)")"
+    text_success "YES (if TTY)"
 else
-    echo "$(text_danger "NO")"
+    text_danger "NO"
 fi
 
 # GitLab CI
@@ -73,9 +74,9 @@ unset GITHUB_ACTIONS
 export GITLAB_CI=true
 echo -n "   GitLab CI: "
 if may_color; then
-    echo "$(text_success "YES (if TTY)")"
+    text_success "YES (if TTY)"
 else
-    echo "$(text_danger "NO")"
+    text_danger "NO"
 fi
 
 # Jenkins
@@ -83,9 +84,9 @@ unset GITLAB_CI
 export JENKINS_URL="http://jenkins.local"
 echo -n "   Jenkins: "
 if may_color; then
-    echo "$(text_success "YES (if TTY)")"
+    text_success "YES (if TTY)"
 else
-    echo "$(text_danger "NO")"
+    text_danger "NO"
 fi
 
 echo
@@ -96,18 +97,18 @@ unset JENKINS_URL
 TERM="dumb"
 echo -n "   Terminal dumb: "
 if may_color; then
-    echo "$(text_success "YES")"
+    text_success "YES"
 else
-    echo "$(text_danger "NO")"
+    text_danger "NO"
 fi
 
 # Linux console
 TERM="linux"
 echo -n "   Linux console: "
 if may_color; then
-    echo "$(text_success "YES")"
+    text_success "YES"
 else
-    echo "$(text_danger "NO")"
+    text_danger "NO"
 fi
 
 echo
@@ -116,9 +117,9 @@ export TERM="xterm-256color"
 export NO_COLOR=1
 echo -n "   With NO_COLOR=1: "
 if may_color; then
-    echo "$(text_success "Allows colors (internal handling)")"
+    text_success "Allows colors (internal handling)"
 else
-    echo "$(text_danger "Blocks colors")"
+    text_danger "Blocks colors"
 fi
 
 # Clean variables

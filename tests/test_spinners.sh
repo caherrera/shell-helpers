@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1091
 
 # Spinner usage demo
 source "$(dirname "$0")/../libs/helpers.sh"
@@ -33,7 +34,7 @@ run_with_spinner "sleep 1 && false" "Attempting failed operation..."
 echo
 echo "6. Manual progress bar:"
 for i in {1..10}; do
-    progress_bar $i 10
+    progress_bar "$i" 10
     sleep 0.3
 done
 

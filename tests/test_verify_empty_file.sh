@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1091
 
 # Test for verify_empty_file function
 source "$(dirname "$0")/../libs/helpers.sh"
@@ -8,7 +9,7 @@ echo
 
 # Create test directory
 TEST_DIR=$(mktemp -d)
-trap "rm -rf $TEST_DIR" EXIT
+trap 'rm -rf "$TEST_DIR"' EXIT
 
 # Test 1: File with valid content
 echo "Test 1: File with valid content"

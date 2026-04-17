@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1091
 
 # Comprehensive test for all new functions added from LATAM helpers.sh
 source "$(dirname "$0")/../libs/helpers.sh"

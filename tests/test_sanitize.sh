@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1091
 
 # Test for sanitize function
 source "$(dirname "$0")/../libs/helpers.sh"

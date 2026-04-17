@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1091
 
 # Test for get_log_level function
 source "$(dirname "$0")/../libs/helpers.sh"

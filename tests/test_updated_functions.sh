@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1091
 
 # Test script for updated functions using new color variables
 source "$(dirname "$0")/../libs/helpers.sh"

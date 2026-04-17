@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1091
 
 # Test for new Bootstrap 5.3 color functions
 source "$(dirname "$0")/../libs/helpers.sh"
