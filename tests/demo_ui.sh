@@ -8,7 +8,7 @@ export TERM="${TERM:-xterm-256color}"
 source "$(dirname "$0")/../libs/helpers.sh"
 
 # Initial cleanup
-clear
+clear || true
 
 title "Terminal UI Framework (Demo)"
 subtitle "Demonstration of typographic capabilities and Bootstrap-style components"
