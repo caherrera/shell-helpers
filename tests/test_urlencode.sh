@@ -53,7 +53,7 @@ echo
 # Test 4: URL-like string
 echo "Test 4: URL-like string"
 result=$(urlencode "https://example.com/path with spaces")
-expected="https%3A//example.com/path%20with%20spaces"
+expected="https%3A%2F%2Fexample.com%2Fpath%20with%20spaces"
 if [[ "$result" == "$expected" ]]; then
     echo "✓ PASS: URL-like string encoded correctly"
 else
