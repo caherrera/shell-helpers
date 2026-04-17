@@ -1,76 +1,49 @@
-# Changelog
+## [](https://github.com/kero-sh/shell-helpers/compare/v2.0.2...v) (2026-04-17)
 
-All notable changes to this project will be documented in this file.
+## [2.0.2](https://github.com/kero-sh/shell-helpers/compare/v2.0.1...v2.0.2) (2026-04-17)
 
-The format is based on Conventional Commits, and this file is automatically updated by the release workflow.
+### Features
 
-## [2.0.0] - 2024-04-08
+* [HELPER-001] Add color variables and update functions to use them ([85e94d2](https://github.com/kero-sh/shell-helpers/commit/85e94d2cf03b52c54f29040bd172d3bbae5b3444))
 
-### BREAKING CHANGES
-- Complete refactor to Bootstrap 5.3 UI framework
-- Enhanced terminal and CI/CD compatibility
-- Deprecated old color functions (still available for backward compatibility)
+### Bug Fixes
 
-### FEAT
-- **Bootstrap 5.3 UI Framework**: Complete implementation with 150+ color functions
-- **Typography Modifiers**: Bold, italic, underline, strikethrough and combinations
-- **Color Variants**: 100-900 scale for all theme colors (blue, green, red, yellow, gray)
-- **Emphasis Colors**: Light variants of all semantic colors
-- **Body Colors**: Bootstrap 5.3 body text utilities
-- **Opacity Utilities**: 25%, 50%, 75%, 100% opacity functions
-- **Subtle Utilities**: Background and border subtle variants
-- **UI Components**: Alerts, badges, titles, subtitles, paragraphs, horizontal rules
-- **Spinners**: ASCII, Unicode, and dots spinners with auto-management
-- **Progress Bar**: Manual progress bar function
-- **Enhanced Logging**: Refactored with Bootstrap 5.3 colors and formatting
+* [HELPER-002] Clean up unused variables in toUsage function ([a4ecb90](https://github.com/kero-sh/shell-helpers/commit/a4ecb90e9683810498b8e95c38ab1d62decfcff8))
 
-### ENHANCE
-- **Modern Terminal Support**: iTerm, Warp, WezTerm, VS Code, Alacritty, Kitty
-- **CI/CD Compatibility**: GitHub Actions, GitLab CI, Jenkins detection
-- **Smart Color Detection**: Respects NO_COLOR and adapts to terminal capabilities
-- **TTY Detection**: Enhanced detection for interactive and non-interactive environments
-- **Quiet Mode**: Improved QUIET environment variable handling
-- **Cross-Platform**: Better macOS, Linux, Windows (WSL/Cygwin) support
+## [2.0.1](https://github.com/kero-sh/shell-helpers/compare/v2.0.0...v2.0.1) (2026-04-08)
 
-### FIX
-- **Syntax Errors**: Fixed all shellcheck warnings and bash syntax issues
-- **Pattern Overrides**: Fixed duplicate patterns in case statements
-- **Variable Handling**: Corrected array handling ($@ vs $*)
-- **Function Declarations**: Fixed missing braces and syntax errors
-- **Printf Formatting**: Fixed format string issues with multiple variables
+## [2.0.0](https://github.com/kero-sh/shell-helpers/compare/v1.0.3...v2.0.0) (2026-04-08)
 
-### REFACTOR
-- **Old Functions**: Refactored to use new Bootstrap framework underneath
-- **Color Functions**: Deprecated basic colors, now use semantic equivalents
-- **Logging Functions**: Enhanced with new color framework while maintaining compatibility
-- **Title Functions**: Unified printtitle() with title() preserving user-preferred style
-- **Dependency Management**: Improved command checking and error handling
+### Features
 
-### TEST
-- **Comprehensive Test Suite**: Added tests for all new features
-- **Bootstrap Colors Test**: Complete color function validation
-- **Compatibility Test**: Backward compatibility verification
-- **Terminal Detection Test**: Modern terminal and CI/CD detection
-- **Spinner Test**: All spinner types and auto-management
-- **UI Demo**: Complete framework demonstration
+* Major refactor - Bootstrap 5.3 UI framework with modern terminal support ([959cf14](https://github.com/kero-sh/shell-helpers/commit/959cf1418a9c823b11dab1ed0196b87ccda6a3d4))
 
-### DOCS
-- **README Update**: Complete documentation of 150+ functions
-- **Function Reference**: Detailed API documentation with examples
-- **Migration Guide**: Examples for upgrading from v1.x to v2.0
-- **Environment Variables**: Documentation of all supported variables
+### Bug Fixes
 
-### DEPRECATE
-- **Basic Color Functions**: `red()`, `green()`, `blue()`, `yellow()` (use semantic colors)
-- **Legacy Functions**: `printtitle()` (use `title()` for new Bootstrap style)
-- **Text Muted**: `text_muted()` (deprecated in Bootstrap 5.3)
+* Correct syntax errors and shellcheck warnings in helpers.sh ([43132ee](https://github.com/kero-sh/shell-helpers/commit/43132ee8fdde65f025549ae42ac61cbc756adb01))
 
-### SECURITY
-- **Input Validation**: Enhanced parameter validation
-- **Shell Injection Prevention**: Safer command execution
-- **Environment Variable Handling**: Secure variable processing
+## [1.0.3](https://github.com/kero-sh/shell-helpers/compare/v1.0.2...v1.0.3) (2026-03-05)
 
-## [1.0.3] - Previous Release
+## [1.0.2](https://github.com/kero-sh/shell-helpers/compare/v1.0.1...v1.0.2) (2025-11-12)
 
-- Maintenance release with bug fixes and improvements
+### Bug Fixes
 
+* clean up release workflow by removing unnecessary steps and ensuring proper formatting ([df354e8](https://github.com/kero-sh/shell-helpers/commit/df354e82ec8992af1305f2559a037dab7769f567))
+
+## [1.0.1](https://github.com/kero-sh/shell-helpers/compare/v1.0.0...v1.0.1) (2025-11-12)
+
+### Bug Fixes
+
+* add permissions for contents write access in release workflows ([917e007](https://github.com/kero-sh/shell-helpers/commit/917e0074393501b0c3c977cd408abf5fa0331576))
+
+## [1.0.0](https://github.com/kero-sh/shell-helpers/compare/54ea6fb3f9ac95cbee47b489e798879e41ef90d3...v1.0.0) (2025-11-12)
+
+### Features
+
+* add release and testing workflows with changelog automation ([54ea6fb](https://github.com/kero-sh/shell-helpers/commit/54ea6fb3f9ac95cbee47b489e798879e41ef90d3))
+
+### Bug Fixes
+
+* add SHELLCHECK_OPTS environment variable for ShellCheck step ([25d0793](https://github.com/kero-sh/shell-helpers/commit/25d079307f9e3af397b2eb53aab9bc1f161ba414))
+* improve variable handling and formatting in helper functions ([2042834](https://github.com/kero-sh/shell-helpers/commit/20428341ddef794d7dc8c05f607964e27381f4d2))
+* update colors test script to improve path handling and formatting ([927e280](https://github.com/kero-sh/shell-helpers/commit/927e280f5cd753e51c584d1dd6bacf521c6dcac8))
