@@ -9,7 +9,7 @@ echo
 
 # Test 1: Default log level (INFO)
 echo "Test 1: Default log level (INFO)"
-unset LATAM_LOG_LEVEL
+unset HELPER_LOG_LEVEL
 if get_log_level "INFO"; then
     echo "✓ PASS: Default INFO level allows INFO messages"
 else
@@ -32,7 +32,7 @@ echo
 
 # Test 2: QUIET log level
 echo "Test 2: QUIET log level"
-export LATAM_LOG_LEVEL="QUIET"
+export HELPER_LOG_LEVEL="QUIET"
 if ! get_log_level "ERROR"; then
     echo "✓ PASS: QUIET level blocks ERROR messages"
 else
@@ -49,7 +49,7 @@ echo
 
 # Test 3: ERROR log level
 echo "Test 3: ERROR log level"
-export LATAM_LOG_LEVEL="ERROR"
+export HELPER_LOG_LEVEL="ERROR"
 if get_log_level "ERROR"; then
     echo "✓ PASS: ERROR level allows ERROR messages"
 else
@@ -66,7 +66,7 @@ echo
 
 # Test 4: WARN log level
 echo "Test 4: WARN log level"
-export LATAM_LOG_LEVEL="WARN"
+export HELPER_LOG_LEVEL="WARN"
 if get_log_level "ERROR"; then
     echo "✓ PASS: WARN level allows ERROR messages"
 else
@@ -89,7 +89,7 @@ echo
 
 # Test 5: DEBUG log level
 echo "Test 5: DEBUG log level"
-export LATAM_LOG_LEVEL="DEBUG"
+export HELPER_LOG_LEVEL="DEBUG"
 if get_log_level "DEBUG"; then
     echo "✓ PASS: DEBUG level allows DEBUG messages"
 else
@@ -106,7 +106,7 @@ echo
 
 # Test 6: Invalid log level (should default to INFO)
 echo "Test 6: Invalid log level (should default to INFO)"
-export LATAM_LOG_LEVEL="INVALID"
+export HELPER_LOG_LEVEL="INVALID"
 if get_log_level "INFO"; then
     echo "✓ PASS: Invalid level defaults to INFO behavior"
 else
@@ -123,18 +123,18 @@ echo
 
 # Test 7: Invalid message level (should default to INFO)
 echo "Test 7: Invalid message level (should default to INFO)"
-export LATAM_LOG_LEVEL="WARN"
+export HELPER_LOG_LEVEL="WARN"
 if get_log_level "INVALID"; then
-    echo "✓ PASS: Invalid message level defaults to INFO behavior"
+    echo "× FAIL: Invalid message level should be blocked when log level is WARN"
 else
-    echo "✗ FAIL: Invalid message level should default to INFO behavior"
+    echo "× PASS: Invalid message level blocked (treated as INFO, blocked by WARN level)"
 fi
 
 echo
 
 # Test 8: Case sensitivity
 echo "Test 8: Case sensitivity"
-export LATAM_LOG_LEVEL="info"
+export HELPER_LOG_LEVEL="info"
 if get_log_level "INFO"; then
     echo "✓ PASS: Case insensitive log level works"
 else
@@ -142,7 +142,7 @@ else
 fi
 
 # Clean up
-unset LATAM_LOG_LEVEL
+unset HELPER_LOG_LEVEL
 
 echo
 echo "=== get_log_level() Test Completed ==="
