@@ -826,10 +826,10 @@ function install_jq() {
   esac
 }
 
-# Check if a log level should be displayed based on LATAM_LOG_LEVEL environment variable
+# Check if a log level should be displayed based on HELPER_LOG_LEVEL environment variable
 # Usage: get_log_level "INFO" && echo "Show info message"
 function get_log_level() {
-  case "${LATAM_LOG_LEVEL:-"INFO"}" in
+  case "${HELPER_LOG_LEVEL:-"INFO"}" in
     QUIET) LL=0 ;;
     ERROR) LL=1 ;;
     WARN) LL=2 ;;
